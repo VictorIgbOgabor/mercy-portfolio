@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ogabor Mercy Akpana | Virtual Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1410;
+    --paper: #FAF8F5;
+    --blush: #C4856A;
+    --sage: #4A6741;
+    --gold: #B8924A;
+    --mist: #E8E4DF;
+    --caption: #7A7470;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: rgba(250,248,245,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--mist);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--caption);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blush); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--blush);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--sage);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .hero-bio {
+    font-size: 0.95rem;
+    color: var(--caption);
+    max-width: 420px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--blush);
+    color: white;
+    padding: 0.85rem 2rem;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #b07458; }
+  .btn-outline {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-right {
+    background: var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 4rem 3rem;
+    position: relative;
+  }
+  /* Decorative circle pattern */
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 1.5rem 2rem;
+    width: 260px;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.25rem;
+  }
+
+  /* SECTION SHELL */
+  section { padding: 5rem 5rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 1rem;
+  }
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-heading em { font-style: italic; color: var(--sage); }
+
+  /* SERVICES */
+  #services { background: var(--ink); }
+  #services .section-label { color: var(--gold); }
+  #services .section-heading { color: var(--paper); }
+  #services .section-heading em { color: var(--blush); }
+  .services-intro {
+    color: rgba(250,248,245,0.55);
+    font-size: 0.95rem;
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: rgba(255,255,255,0.08);
+  }
+  .service-item {
+    background: var(--ink);
+    padding: 2rem 1.75rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .service-item:hover { background: #26201A; }
+  .service-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+  .service-desc {
+    font-size: 0.82rem;
+    color: rgba(250,248,245,0.45);
+    line-height: 1.7;
+  }
+
+  /* ABOUT */
+  #about { background: var(--mist); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .about-accent {
+    position: relative;
+  }
+  .about-box {
+    background: var(--sage);
+    padding: 3rem 2.5rem;
+    color: white;
+  }
+  .about-box-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+  .about-box-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .about-detail p {
+    font-size: 0.95rem;
+    color: var(--caption);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+  .edu-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid var(--mist);
+    padding: 0.6rem 1rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+  }
+  .edu-tag strong { font-weight: 500; }
+
+  /* CERTIFICATIONS */
+  #certs { background: var(--paper); }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .cert-card {
+    border: 1px solid var(--mist);
+    padding: 1.75rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    background: white;
+  }
+  .cert-card:hover {
+    border-color: var(--blush);
+    transform: translateY(-3px);
+  }
+  .cert-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 0.6rem;
+  }
+  .cert-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+  .cert-date {
+    font-size: 0.75rem;
+    color: var(--caption);
+  }
+  .cert-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--mist);
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  /* WHY HIRE */
+  #why {
+    background: var(--blush);
+    color: white;
+  }
+  #why .section-label { color: rgba(255,255,255,0.65); }
+  #why .section-heading { color: white; }
+  #why .section-heading em { color: var(--ink); font-style: italic; }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  .why-item { border-top: 1px solid rgba(255,255,255,0.3); padding-top: 1.25rem; }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .why-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  .why-desc { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  /* CONTACT */
+  #contact { background: var(--paper); }
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+    align-items: start;
+  }
+  .contact-intro { font-size: 0.95rem; color: var(--caption); line-height: 1.8; }
+  .contact-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--mist);
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--blush); }
+  .contact-link-icon { font-size: 1rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--caption);
+  }
+  .form-input, .form-textarea {
+    border: 1px solid var(--mist);
+    background: white;
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--blush); }
+  .form-textarea { resize: vertical; min-height: 130px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,245,0.4);
+    padding: 2rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+  footer a { color: var(--blush); text-decoration: none; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(250,248,245,0.7);
+    font-weight: 300;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--blush);
+    margin: 1.25rem 0 2rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 6rem 2rem 3rem; }
+    .hero-right { min-height: 300px; }
+    section { padding: 3.5rem 2rem; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mercy Akpana</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#certs">Credentials</a></li>
+    <li><a href="#contact">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Virtual Assistant · Nigeria</p>
+    <h1 class="hero-name">Ogabor<br><em>Mercy</em><br>Akpana</h1>
+    <p class="hero-title">Professional Virtual Assistant</p>
+    <p class="hero-bio">
+      A highly certified, detail-oriented Virtual Assistant ready to help you streamline your business — from HR operations to digital marketing, customer relationships, and beyond.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Hire Me</a>
+      <a href="#certs" class="btn-outline">View Credentials</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Professional Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Core Competency Areas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">B.Sc</div>
+        <div class="stat-label">University of Ibadan Graduate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">What I Do</p>
+  <h2 class="section-heading">Skills that <em>move</em><br>your business forward</h2>
+  <p class="services-intro">From inbox management to full HR support, I bring a multi-certified skill set to every task I take on.</p>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="service-icon">📋</span>
+      <div class="service-name">Human Resource Management</div>
+      <p class="service-desc">Recruitment support, onboarding coordination, HR documentation, and employee records management.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🤝</span>
+      <div class="service-name">Customer Relationship Management</div>
+      <p class="service-desc">Building client rapport, managing CRM tools, follow-ups, and customer satisfaction tracking.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">📱</span>
+      <div class="service-name">Digital Marketing & Sales</div>
+      <p class="service-desc">Social media management, email marketing, content scheduling, and sales funnel support.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">💼</span>
+      <div class="service-name">Project Management</div>
+      <p class="service-desc">Task tracking, deadline management, stakeholder communication, and PMBOK-standard coordination.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🎤</span>
+      <div class="service-name">Communication & Presentation</div>
+      <p class="service-desc">Professional correspondence, deck preparation, meeting facilitation, and public-facing content.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🌐</span>
+      <div class="service-name">Virtual Assistance (Digital Age)</div>
+      <p class="service-desc">Remote admin support, calendar management, data entry, and digital tool proficiency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Background</p>
+  <h2 class="section-heading">Educated, <em>certified</em>,<br>and ready to deliver</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-accent">
+      <div class="about-box">
+        <p class="about-box-quote">"Empowered to explore new trends — and to bring those insights directly to my clients."</p>
+        <p class="about-box-meta">— Ogabor Mercy Akpana</p>
+      </div>
+    </div>
+    <div class="about-detail">
+      <p>
+        Ogabor Mercy Akpana is a trained educator and certified professional Virtual Assistant based in Nigeria. She holds a degree in Special Education from the prestigious University of Ibadan — a foundation that sharpened her communication skills, patience, and ability to tailor her approach to each individual's needs.
+      </p>
+      <p>
+        Over the past two years, Mercy has invested heavily in professional development, earning certifications across HR management (in collaboration with SHRM Global), project management, digital marketing, customer relationship management, virtual assistance, entrepreneurship, and public speaking.
+      </p>
+      <p>
+        She is accredited through the Quality Management Career Centre (QMCC), which holds recognition from the Centre for Management Development (CMD) and the National Board for Technical Education (NBTE).
+      </p>
+      <div class="edu-tag">
+        🎓 <span><strong>B.Sc Special Education</strong> · University of Ibadan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-heading">Certified across <em>eight</em><br>professional disciplines</h2>
+  <div class="divider"></div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <p class="cert-org">QMCC · SHRM Global</p>
+      <h3 class="cert-title">Professional Certification in Human Resource Management</h3>
+      <p class="cert-date">November 4–17, 2024</p>
+      <span class="cert-badge">HR Management</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Quality Management Career Centre</p>
+      <h3 class="cert-title">Executive Certification — Customer Relationship Management</h3>
+      <p class="cert-date">November 4, 2024</p>
+      <span class="cert-badge">CRM</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Quality Management Career Centre</p>
+      <h3 class="cert-title">Online Certification in Digital Marketing & Sales Management</h3>
+      <p class="cert-date">November 25, 2024</p>
+      <span class="cert-badge">Digital Marketing</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">QMCC · PMI · CAPM · PRINCE2</p>
+      <h3 class="cert-title">Certification Attestation in Project Management Standards</h3>
+      <p class="cert-date">January 10, 2025</p>
+      <span class="cert-badge">Project Management</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Quality Management Career Centre</p>
+      <h3 class="cert-title">Certificate of Achievement — Virtual Assistant Skills in the Digital Age</h3>
+      <p class="cert-date">January 8, 2025</p>
+      <span class="cert-badge">Virtual Assistant</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Quality Management Career Centre</p>
+      <h3 class="cert-title">Certificate of Completion — Public Speaking Mastery Course</h3>
+      <p class="cert-date">January 17, 2025</p>
+      <span class="cert-badge">Communication</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Quality Management Career Centre</p>
+      <h3 class="cert-title">Career Mastery — Transformation & Competence</h3>
+      <p class="cert-date">November 1, 2024</p>
+      <span class="cert-badge">Career Dev.</span>
+    </div>
+    <div class="cert-card">
+      <p class="cert-org">Skill Up Management Institute · UKaid · African Forum</p>
+      <h3 class="cert-title">Entrepreneurial Development Certificate</h3>
+      <p class="cert-date">December 12, 2024</p>
+      <span class="cert-badge">Entrepreneurship</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HIRE -->
+<section id="why">
+  <p class="section-label">Why Choose Mercy</p>
+  <h2 class="section-heading">More than a VA — a <em>strategic</em> partner</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div class="why-title">Multi-Certified</div>
+      <p class="why-desc">8 professional certifications across HR, marketing, PM, and VA skills — not just one specialty.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div class="why-title">Globally Aligned</div>
+      <p class="why-desc">Trained alongside SHRM Global and PMI standards — bringing international best practices to every role.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div class="why-title">People-First</div>
+      <p class="why-desc">A background in Special Education means she adapts, communicates clearly, and never leaves a client guessing.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <div class="why-title">Remote-Ready</div>
+      <p class="why-desc">Fully equipped and trained for digital-age virtual assistance — available wherever your business operates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-heading">Let's work <em>together</em></h2>
+  <div class="divider"></div>
+  <div class="contact-wrap">
+    <div>
+      <p class="contact-intro">
+        Ready to delegate tasks and reclaim your time? Mercy is available for part-time, full-time, or project-based virtual assistant roles. Reach out and let's discuss how she can support your business goals.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:ogabormercy@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          ogabormercy@gmail.com
+        </a>
+        <a href="tel:+2349069945790" class="contact-link">
+          <span class="contact-link-icon">📞</span>
+          09069945790
+        </a>
+        <a href="https://www.linkedin.com/in/mercy-makinde-a60451228" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          linkedin.com/in/mercy-makinde-a60451228
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">📍</span>
+          Nigeria (Remote Worldwide)
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-field">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" type="text" placeholder="Jane Smith">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="jane@company.com">
+      </div>
+      <div class="form-field">
+        <label class="form-label">How Can Mercy Help?</label>
+        <textarea class="form-textarea" placeholder="Tell me about the role or tasks you need support with..."></textarea>
+      </div>
+      <a href="mailto:ogabormercy@gmail.com" class="btn-primary" style="text-align:center;">Send Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ogabor Mercy Akpana</div>
+  <div>© 2025 · Virtual Assistant · Nigeria</div>
+  <div>Built with care</div>
+</footer>
+
+</body>
+</html>
